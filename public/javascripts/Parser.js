@@ -16,7 +16,13 @@ var Parser = (function() {
 			case "penup": 
 			case "pendown": 			
 				cmd = [token]
-				break; 
+				break;  
+			case "repeat":
+				cmd = [token, [tokens.shift(), parse(tokens)]]
+				break;
+			case "end":
+			  return [];
+				break;
 			default:   
 				if (tokens.length == 0) {
 					return [];

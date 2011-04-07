@@ -14,10 +14,22 @@ function Drawer(canvas) {
 Drawer.prototype.draw = function(instructions) {
 	this.paper.clear();
 	this.paper.rect(0, 0, 600, 400, 10).attr('fill', '#000');	
+	this.run(instructions)
+}          
+
+Drawer.prototype.run = function(instructions) {
 	instructions.forEach(function(instruction) {
 		this[instruction[0]](instruction[1])
- 	}, this)
-}     
+	}, this)
+	
+}
+
+Drawer.prototype.repeat = function(args) {
+	var num = args.shift();
+	for (var i = 0; i < num; i++) {
+		this.run(args[0]);
+	}
+}
 
 Drawer.prototype.penup = function(dist) {
 	this.drawing = false
