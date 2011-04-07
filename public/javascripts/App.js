@@ -1,6 +1,10 @@
 $(function() {
-	$('script[type="application/logo"]').each(function() {   
-    var drawer = new Drawer(document.getElementById('paper'));
-		drawer.draw(Parser.parse(this.innerHTML)); 
+    var drawer = new Drawer(document.getElementById('paper'));	
+	function drawIt() {                                         
+		drawer.draw(Parser.parse(document.getElementById('actual_code').value));		
+	}
+	$('#code').submit(function() {
+		drawIt()
+		return false;
 	});
 });
