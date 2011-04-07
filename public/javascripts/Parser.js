@@ -11,6 +11,7 @@ var Parser = (function() {
 			case "back": 			
 			case "left": 			
 			case "right": 			
+			case "color": 						
 				cmd = [token, tokens.shift()]
 				break;  
 			case "penup": 

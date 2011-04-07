@@ -13,11 +13,12 @@ describe("Parser", function() {
 			"left 90",
 			"penup", 
 			"back 25", 
-			"pendown", 
+			"pendown",    
+			"color #ccc"
 		].join(' ');
      
 		var cmds_p = Parser.parse(programme),
-				cmds_e = [["forward", "50"], ["right", "90"], ["forward", "50"], ["left", "90"], ["penup"], ["back", "25"], ["pendown"]];
+				cmds_e = [["forward", "50"], ["right", "90"], ["forward", "50"], ["left", "90"], ["penup"], ["back", "25"], ["pendown"], ["color", "#ccc"]];
 
     expect(cmds_p).toEqual(cmds_e);				
 
@@ -31,6 +32,17 @@ describe("Parser", function() {
 			"end", 
 		].join(' ');	                
     expect(Parser.parse(programme)).toEqual([["repeat", ["2", [["forward", "50"], ["right", "90"]]]]]);				
-	});
+	});                                              
 
+  it("should parse repeats recursively", function() {
+		var programme = [		
+			"repeat 2",
+			"repeat 2", 
+			"right 90", 
+			"end",
+			"end", 
+		].join(' ');	                
+    expect(Parser.parse(programme)).toEqual([["repeat", ["2", [["repeat", ["2", [["right", "90"]]]]]]]])
+	});	
+   
 });
