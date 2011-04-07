@@ -6,5 +6,6 @@ $(function() {
 	$('#code').submit(function() {
 		drawIt()
 		return false;
-	});
+	});      
+	drawIt();
 });
