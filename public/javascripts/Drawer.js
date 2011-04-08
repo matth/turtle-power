@@ -1,5 +1,10 @@
 function Drawer(canvas) {
 	 canvas.innerHTML = "";
+	 this.paper = Raphael(document.getElementById('paper'), 600, 600);     	
+}                                                                         
+                       
+Drawer.prototype.draw = function(instructions) {
+	this.paper.clear();
 	 this.d = Math.PI / 2 * -1;
 	 this.x = 300;
 	 this.y = 200;   
@@ -7,12 +12,7 @@ function Drawer(canvas) {
 	 this.attrs = {
 		'stroke' : '#fff',
 		'stroke-width' : 2
-	 }
-	 this.paper = Raphael(document.getElementById('paper'), 600, 600);     	
-}                                                                         
-
-Drawer.prototype.draw = function(instructions) {
-	this.paper.clear();
+	 }	
 	this.paper.rect(0, 0, 600, 400, 10).attr('fill', '#000');	
 	this.run(instructions)                       
 }          
