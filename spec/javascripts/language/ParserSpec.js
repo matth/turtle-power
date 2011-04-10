@@ -6,13 +6,19 @@ describe("Logo", function() {
          
   it("should do something", function() {
 		var cmds = [
-			"line 1",
-			"line 2",
-			"line 3",						
-		].join("\n"),
-			 parse = logo.parse("forward 10 \n foo \n \n \ndd")
+			"to 10",        
+			"to",
+			"forward 16.7 ",
+			"end",
+			"end",
+			"forward 10"
+		].join(" \n") + "\n",
+			 parse = logo.parse(cmds);
 		
-		console.log(parse)
+		parse[1].forEach(function(line) {
+			console.log(line)
+		})                               
+		
 	});  
 	
 });
