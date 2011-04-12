@@ -16,7 +16,8 @@ src_files:
     - public/javascripts/language/Parser.js
     - public/javascripts/language/Tokens.js    
     - public/javascripts/language/Interpreter.js        
-    - public/javascripts/language/commands/Math.js         
+    - public/javascripts/language/commands/Math.js
+    - public/javascripts/language/commands/List.js             
 
 # stylesheets
 #

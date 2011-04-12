@@ -1,9 +1,5 @@
 describe("Math Commands", function() {  
-	  
-	function interpret(expr) {
-		return Interpreter.exec(logo.parse(expr));
-	}
-	
+	  	
 	describe("sum", function() {  
 		it('should return the sum of two numbers as the correct type', function() {
 			expect(interpret("sum 2 3").type).toEqual("INTEGER")
@@ -45,8 +41,7 @@ describe("Math Commands", function() {
 			expect(interpret("product 9.0 3.0").value).toEqual(27)			
 			expect(interpret("product 2.4 3").type).toEqual("FLOAT")
 			expect(interpret("product 2.4 3").value.toFixed(1)).toEqual('7.2')			
-		});
+	  });
 	});
-
 	
 });

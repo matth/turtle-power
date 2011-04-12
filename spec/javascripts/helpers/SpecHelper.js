@@ -1,9 +1,11 @@
-beforeEach(function() {
-  this.addMatchers({
-    toBePlaying: function(expectedSong) {
-      var player = this.actual;
-      return player.currentlyPlayingSong === expectedSong
-          && player.isPlaying;
-    }
-  })
-});
+/************************************
+ * UTILITIES
+ ************************************/
+
+function parse(text) {
+	return logo.parse(text);
+}
+
+function interpret(expr) {
+	return Interpreter.exec(logo.parse(expr));
+}

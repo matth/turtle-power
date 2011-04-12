@@ -35,7 +35,8 @@ var Interpreter = (function() {
 					return cmd.exec(args);
 					break;
 				case 'INTEGER':
-				case 'FLOAT':
+				case 'FLOAT':   
+				case 'LIST':   				
 					return token;
 				default: 
 					throw "Unrecogonized token" ;
