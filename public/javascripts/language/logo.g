@@ -11,7 +11,9 @@
 "+"                     { return '+' }  
 "-"                     { return '-' }        
 "*"                     { return '*' }
-"/"                     { return '/' }
+"/"                     { return '/' }   
+"["											{ return '[' }
+"]"											{ return ']' }
 
 /lex
 
@@ -29,15 +31,16 @@ root
     ;
 
 expr                                              
-		: expr '+' expr				{ $$ = [new Tokens.WORD('sum')].concat($1,$3) }
-		| expr '-' expr    		{ $$ = [new Tokens.WORD('difference')].concat($1,$3) }
-		| expr '/' expr    		{ $$ = [new Tokens.WORD('quotient')].concat($1,$3) }
-		| expr '*' expr    		{ $$ = [new Tokens.WORD('product')].concat($1,$3) }
+		: expr '+' expr				{ var x = $1.pop(); $$ =  $1.concat(new Tokens.WORD('sum'), x, $3) } 
+		| expr '-' expr    		{ var x = $1.pop(); $$ =  $1.concat(new Tokens.WORD('difference'), x, $3) } 
+		| expr '/' expr    		{ var x = $1.pop(); $$ =  $1.concat(new Tokens.WORD('quotient'), x, $3) } 
+		| expr '*' expr    		{ var x = $1.pop(); $$ =  $1.concat(new Tokens.WORD('product'), x, $3) } 
 		| tokens				   		{ $$ = $1 }
 		;                                  
 		
 tokens
-		: token			  				{ $$ = [$1] }
+		: token			  				{ $$ = [$1] }  
+		| '[' expr ']'        { $$ = [new Tokens.LIST($2)] }				
 		| tokens token				{ $1.push($2) }
 		;
 

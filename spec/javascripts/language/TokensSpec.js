@@ -18,7 +18,7 @@ describe("Tokens", function() {
 	tokenTest('WORD', 'sum', 'sum')   
 	tokenTest('INTEGER', '10', 10)	
 	tokenTest('FLOAT', '10.89', 10.89)		
-	
+	tokenTest('LIST', 'foo', 'foo')			
 	
 });
 

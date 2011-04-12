@@ -16,7 +16,7 @@ describe("Logo", function() {
 	
 	  this.addMatchers({
 			toHaveType		 : function(v) { return this.actual.type == v },
-			toHaveValue		 : function(v) { return this.actual.value == v }
+			toHaveValue		 : function(v) { return this.actual.value == v },
 	  });
 	
 	});
@@ -66,7 +66,22 @@ describe("Logo", function() {
 				expect(token).toHaveType('FLOAT')			
 				expect(token).toHaveValue(parseFloat(f))				
 		 	});
-	});	
+	});	    
+	
+	// List tokens
+	it('should parse lists into list tokens', function() {
+		tokenTest(["[ foo 1 2 ]"], 
+			function(f, token) {
+				expect(token).toHaveType('LIST')			
+				expect(token.value.map(function(v) { 
+					return v.value 
+				})).toEqual(['foo', 1, 2])				
+		 	});
+	});	      
+	
+	it('should parse lists recursively', function() {
+		// var tokens = parse("[ foo [ bar ] ]")    
+	});	           
 	 
 	/************************************
 	 * TEST OPERATORS + PRECEDENCE
@@ -82,20 +97,25 @@ describe("Logo", function() {
 			}
 		}
 
-		it('should parse + operators into sum', 
-				operatorTest("2 + 5", ["sum", 2, 5]))
+		[['+', 'sum'], ['-', 'difference'], ['*', 'product'], ['/', 'quotient']]
+			.forEach(function(vals) {
+		 			
+		 			var opr = vals[0],
+		 					cmd = vals[1];
+		 			
+		 			it('should parse ' + opr + ' operators into ' + cmd, 
+		 					operatorTest("2 " + opr + " 5", [cmd, 2, 5])) 
+		 			
+		 			it('should parse ' + opr + ' operators into ' + cmd + ' when preceded by a cmd', 
+		 					operatorTest("cos 2 " + opr + " 5 foo", ['cos', cmd, 2, 5, 'foo']))					 				
+		 					 
+		 		});            
 				
-		it('should parse - operators into difference', 
-				operatorTest("2 - 5", ["difference", 2, 5]))
-				
-		it('should parse / operators into quotient', 
-				operatorTest("2 / 5", ["quotient", 2, 5]))
-				
-		it('should parse * operators into product', 
-				operatorTest("2 * 5", ["product", 2, 5]))
-		
 		it('should give * precendence to product over +', 
 				operatorTest("1 + 2 * 5", ["sum", 1, "product", 2, 5]))
+				
+		it('should give * precendence to product over + when preceded by a cmd', 
+				operatorTest("cos 1 + 2 * 5", ["cos", "sum", 1, "product", 2, 5]))				
 				
 		it('should give * precendence to product over -', 
 				operatorTest("1 - 2 * 5", ["difference", 1, "product", 2, 5]))				
@@ -107,6 +127,5 @@ describe("Logo", function() {
 				operatorTest("1 - 2 / 5", ["difference", 1, "quotient", 2, 5]))				
 		
 	});
-
-	        
+         
 });
