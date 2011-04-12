@@ -13,6 +13,12 @@ describe("List Commands", function() {
 			var res = interpret("butfirst []")
 			expect(res.type).toEqual("LIST")	
 			expect(res.value.length).toEqual(0)				 		
+		});		                                                       
+		it('should work on a list returnes', function() {
+			var res = interpret("butfirst butfirst [a b c]")
+			expect(res.type).toEqual("LIST")	
+			expect(res.value.length).toEqual(1)				 		
+			expect(res.value[0].value).toEqual('c')				 					
 		});		
 	});	  
 
