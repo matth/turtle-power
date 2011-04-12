@@ -14,7 +14,7 @@ describe("List Commands", function() {
 			expect(res.type).toEqual("LIST")	
 			expect(res.value.length).toEqual(0)				 		
 		});		                                                       
-		it('should work on a list returnes', function() {
+		it('should work on a list returned by another function', function() {
 			var res = interpret("butfirst butfirst [a b c]")
 			expect(res.type).toEqual("LIST")	
 			expect(res.value.length).toEqual(1)				 		
