@@ -70,17 +70,30 @@ describe("Logo", function() {
 	
 	// List tokens
 	it('should parse lists into list tokens', function() {
-		tokenTest(["[ foo 1 2 ]"], 
+		tokenTest(["[ foo 1  + 2 * 5 ]"], 
 			function(f, token) {
 				expect(token).toHaveType('LIST')			
 				expect(token.value.map(function(v) { 
 					return v.value 
-				})).toEqual(['foo', 1, 2])				
+				})).toEqual(['foo', 'sum', 1, 'product', 2, 5])				
 		 	});
 	});	      
-	
+	                
 	it('should parse lists recursively', function() {
-		// var tokens = parse("[ foo [ bar ] ]")    
+		var tokens = parse("[ foo [ bar [ baz ] ] ]")    
+
+		// 1st level
+		expect(tokens[0].type).toEqual('LIST')
+		expect(tokens[0].value[0].value).toEqual('foo')		
+		 
+	 	// 2nd level
+		expect(tokens[0].value[1].type).toEqual('LIST')
+		expect(tokens[0].value[1].value[0].value).toEqual('bar')
+		
+		// 3rd level
+		expect(tokens[0].value[1].value[1].type).toEqual('LIST')
+		expect(tokens[0].value[1].value[1].value[0].value).toEqual('baz')
+						
 	});	           
 	 
 	/************************************

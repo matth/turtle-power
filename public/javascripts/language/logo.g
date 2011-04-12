@@ -40,7 +40,6 @@ expr
 		
 tokens
 		: token			  				{ $$ = [$1] }  
-		| '[' expr ']'        { $$ = [new Tokens.LIST($2)] }				
 		| tokens token				{ $1.push($2) }
 		;
 
@@ -48,4 +47,5 @@ token
 		: WORD						  	{ $$ = new Tokens.WORD($1)    } 
 		| FLOAT	    			  	{ $$ = new Tokens.FLOAT($1)   } 
 		| INTEGER					  	{ $$ = new Tokens.INTEGER($1) } 
+		| '[' expr ']'        { $$ = new Tokens.LIST($2)    }		
 		;
