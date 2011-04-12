@@ -1,0 +1,23 @@
+== General
+
+* Change tokens to types?
+
+== Interpreter
+
+* To javascript function
+
+== Commands
+
+=== Kernel
+
+* print 
+
+=== Math
+
+* Math functions return Tokens / Types
+
+=== Lists
+
+* Implement all list funcs
+
+
