@@ -61,6 +61,14 @@ describe("Logo", function() {
 	});	    
 	
 	// List tokens
+	it('should parse empty lists into list tokens', function() { 
+		tokenTest(["[ ]"], 
+			function(f, token) {
+				expect(token).toHaveType('LIST')			
+				expect(token.value.length).toEqual(0)
+		 	});		
+	});
+	
 	it('should parse lists into list tokens', function() {
 		tokenTest(["[ foo 1  + 2 * 5 ]"], 
 			function(f, token) {

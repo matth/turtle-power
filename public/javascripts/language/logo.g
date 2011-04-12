@@ -48,4 +48,5 @@ token
 		| FLOAT	    			  	{ $$ = new Tokens.FLOAT($1)   } 
 		| INTEGER					  	{ $$ = new Tokens.INTEGER($1) } 
 		| '[' expr ']'        { $$ = new Tokens.LIST($2)    }		
+		| '[' ']'        			{ $$ = new Tokens.LIST([])    }				
 		;

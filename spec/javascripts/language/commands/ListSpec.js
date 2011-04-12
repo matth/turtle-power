@@ -8,7 +8,12 @@ describe("List Commands", function() {
 			expect(res.value.map(function(item) {
 				return item.value;
 			})).toEqual(['b', 'c', 'd'])							
-		});
+		}); 
+		it('should return an empty list when given one', function() {
+			var res = interpret("butfirst []")
+			expect(res.type).toEqual("LIST")	
+			expect(res.value.length).toEqual(0)				 		
+		});		
 	});	  
 
 });
