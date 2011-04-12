@@ -6,7 +6,8 @@ var Tokens = (function() {
 			this.value = value;
 	 	}
 		return (typeof constructor == 'undefined') 
-             ? t : function(val) { return new t(constructor(val)) };
+             ? function(val) { return new t(val) } 
+						 : function(val) { return new t(constructor(val)) };
 	}
 
 	return {
