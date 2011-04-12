@@ -1,23 +1,16 @@
-function print(txt) {
-//	console.log(txt)
-}
-
 describe("Logo", function() {
          
   it("should do something", function() {
 		var cmds = [
-			"to 10",        
-			"to",
-			"forward 16.7 ",
-			"end",
-			"end",
-			"forward 10"
-		].join(" \n") + "\n",
+			// 2 + 2 + 5 - 2
+			// "print sum 2 sum 2 difference 5 2"       
+			"10 + 3 * 5"
+		].join("\n"),
 			 parse = logo.parse(cmds);
-		
-		parse[1].forEach(function(line) {
-			console.log(line)
-		})                               
+
+		// console.log(parse)		                          
+		// console.log(parse.map(function(x) {return x.value;}))
+		console.log(Interpreter.exec(parse))           
 		
 	});  
 	

@@ -4,54 +4,45 @@
 %lex
 
 %%
-\n+											{return 'NEWLINE'};
-[ \r\t]									;  
-"to"										{return 'BLOCK_START'}
-"end"										{return 'BLOCK_END'}
-[a-zA-Z_][a-zA-Z0-9_]*  {return 'IDENTIFIER'};
-[0-9]+'.'[0-9]*         {return 'DOUBLE'};
-[0-9]+                  {return 'INTEGER'};
+\s+											{ /* Ignore whitespace */ }
+[a-zA-Z_][a-zA-Z0-9_]*  { return 'WORD' }
+[0-9]+'.'[0-9]*         { return 'FLOAT' }
+[0-9]+                  { return 'INTEGER' }
+"+"                     { return '+' }  
+"-"                     { return '-' }        
+"*"                     { return '*' }
+"/"                     { return '/' }
 
 /lex
+
+/* operator associations and precedence */
+
+%left '+' '-' 
+%left '*' '/' 
 
 %start root   
   
 %% /* language grammar */
 
 root
-		: body   			 			{ $$ = ['root', $1]; return $$ }
-    ;                                                   
-
-body                
-		: block							{ $$ = [$1] }  
-		| line							{ $$ = [$1] }  
-		| body line     		{ $1.push($2) }
-    ;      
-      
-block
-		: BLOCK_START line body BLOCK_END term { $$ = [$1, $2, $3] }	
+		: expr    			 			{ $$ = $1; return $$ }
     ;
 
-line 
-		: term         		  { $$ = [] }
-		| stmts term
+expr                                              
+		: expr '+' expr				{ $$ = [new Tokens.WORD('sum')].concat($1,$3) }
+		| expr '-' expr    		{ $$ = [new Tokens.WORD('difference')].concat($1,$3) }
+		| expr '/' expr    		{ $$ = [new Tokens.WORD('quotient')].concat($1,$3) }
+		| expr '*' expr    		{ $$ = [new Tokens.WORD('product')].concat($1,$3) }
+		| tokens				   		{ $$ = $1 }
+		;                                  
+		
+tokens
+		: token			  				{ $$ = [$1] }
+		| tokens token				{ $1.push($2) }
 		;
 
-stmts
-		: stmt 	 				    { $$ = ['stmt', $1] }
- 		| stmts stmt 			  { $1.push($2) }
-		;
-                        
-stmt
-		: expr 				      { $$ = new AST.T_EXPRESSION($1) }
-    ;
-
-expr
-		: IDENTIFIER			  { $$ = new AST.T_IDENTIFIER($1) } 
-		| DOUBLE            { $$ = new AST.T_FLOAT($1) } 
-		| INTEGER           { $$ = new AST.T_INTEGER($1) } 
-		;
-
-term
-		: NEWLINE
+token
+		: WORD						  	{ $$ = new Tokens.WORD($1)    } 
+		| FLOAT	    			  	{ $$ = new Tokens.FLOAT($1)   } 
+		| INTEGER					  	{ $$ = new Tokens.INTEGER($1) } 
 		;
