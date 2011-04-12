@@ -36,7 +36,7 @@ var Interpreter = (function() {
 					break;
 				case 'INTEGER':
 				case 'FLOAT':
-					return token.value;
+					return token;
 				default: 
 					throw "Unrecogonized token" ;
 		 }
