@@ -7,15 +7,15 @@ Bundler.require(:default, :development)
 load 'jasmine/tasks/jasmine.rake'
 
 # Generate parser
-file "public/javascripts/language/Parser.js" => ["public/javascripts/language/logo.g"] do
+file "lib/javascripts/language/Parser.js" => ["lib/javascripts/language/logo.g"] do
   if ENV['PATH'].split(':').any? {|folder| File.exists?(folder+'/jison')}
-    system "jison -v public/javascripts/language/logo.g"
-    sh "mv logo.js public/javascripts/language/Parser.js"
+    system "jison -v lib/javascripts/language/logo.g"
+    sh "mv logo.js lib/javascripts/language/Parser.js"
   else
     puts "Jison is not installed. Try running `npm install jison`."
   end
 end
 
 desc "Compile parser from grammar"
-task :compile => "public/javascripts/language/Parser.js"
+task :compile => "lib/javascripts/language/Parser.js"
 

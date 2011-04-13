@@ -11,13 +11,13 @@
 #   - dist/**/*.js
 #
 src_files:                      
-    - public/javascripts/vendor/*.js  
-    - public/javascripts/*.js         
-    - public/javascripts/language/Parser.js
-    - public/javascripts/language/Tokens.js    
-    - public/javascripts/language/Interpreter.js        
-    - public/javascripts/language/commands/Math.js
-    - public/javascripts/language/commands/List.js             
+    - lib/javascripts/vendor/*.js  
+    - lib/javascripts/*.js         
+    - lib/javascripts/language/Parser.js
+    - lib/javascripts/language/Tokens.js    
+    - lib/javascripts/language/Interpreter.js        
+    - lib/javascripts/language/commands/Math.js
+    - lib/javascripts/language/commands/List.js             
 
 # stylesheets
 #
