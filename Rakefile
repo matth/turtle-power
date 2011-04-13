@@ -5,9 +5,6 @@ Bundler.require(:default, :development)
 
 # Load tasks
 load 'jasmine/tasks/jasmine.rake'
-Dir.glob('lib/tasks/*.rake').each do |task| 
-  load task
-end
 
 # Generate parser
 file "public/javascripts/language/Parser.js" => ["public/javascripts/language/logo.g"] do
