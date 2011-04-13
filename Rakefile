@@ -1,6 +1,15 @@
-require 'jasmine'
-load 'jasmine/tasks/jasmine.rake'
+# Bundler
+require 'rubygems'
+require "bundler/setup"
+Bundler.require(:default, :development)
 
+# Load tasks
+load 'jasmine/tasks/jasmine.rake'
+Dir.glob('lib/tasks/*.rake').each do |task| 
+  load task
+end
+
+# Generate parser
 file "public/javascripts/language/Parser.js" => ["public/javascripts/language/logo.g"] do
   if ENV['PATH'].split(':').any? {|folder| File.exists?(folder+'/jison')}
     system "jison -v public/javascripts/language/logo.g"
