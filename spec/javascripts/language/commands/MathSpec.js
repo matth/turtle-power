@@ -32,7 +32,7 @@ describe("Math Commands", function() {
 	]);	                                                                   
 
 	quickly("cos", "cos of the value in degrees", [
-	 ["cos 90", Math.atan(deg2rad(90))], ["cos 45", Math.atan(deg2rad(45))]
+	 ["cos 90", Math.cos(deg2rad(90))], ["cos 45", Math.cos(deg2rad(45))]
 	]);	
 
 	quickly("difference", "difference of two numbers", [
