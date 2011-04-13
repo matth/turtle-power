@@ -167,7 +167,19 @@
 	 */
 	i.command('quotient', function(a, b) { 
 		return new Tokens.NUMBER(a.value / b.value );
-	});
+	});           
+	
+	/**
+	 * @logo
+	 * @command random <num>
+	 * @description	
+	 * Reports a random non-negative integer less than number
+	 * @example     
+	 * show random 10 
+	 */
+	i.command('random', function(a) { 
+		return new Tokens.NUMBER(Math.floor(Math.random() * a.value));
+	});	
 	                      
 	/**
 	 * @logo

@@ -14,7 +14,11 @@
 * identical? 
 * less?    
 * not    
-* or     
+* or      
+
+== Type checks
+
+* number?
 
 == Math
 
@@ -28,13 +32,12 @@
 * log  
 * Math Operators 
 * minus  
-* number?
 * pi
 * power
 * product
-* quotient
-* random    
-* remainder 
+* quotient 
+* random // here!   
+* remainder
 * rerandom
 * round              
 * sin 
