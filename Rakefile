@@ -19,7 +19,6 @@ end
 desc "Compile parser from grammar"
 task :compile => "lib/javascripts/language/Parser.js"
 
-
 # Website
 namespace :site do        
    desc "Generate website"
