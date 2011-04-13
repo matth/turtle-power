@@ -21,5 +21,9 @@ describe("List Commands", function() {
 			expect(res.value[0].value).toEqual('c')				 					
 		});		
 	});	  
+   
+ 	describe("butlast", function() {  
+		// it("ggg", function() {pending()});
+	});
 
 });

@@ -14,7 +14,9 @@
 	 * Returns all but the first component of a word or list
 	 * @example    
 	 * show butfirst [0 1 2 3]
-	 * [1 2 3]
+	 * 1 2 3
+	 * @see
+	 * butlast first last
 	 */
 	i.command('butfirst', function(l) { 
 		l.value.shift();
