@@ -1,16 +1,18 @@
-require 'rack'
+require 'rubygems'
+require 'sinatra'
 
-use(Class.new do
-  def initialize(app)
-    @app = app
-  end
-  def call(env)   
-    if env['PATH_INFO'] == "/"
-      return [302, { 'Location' => '/index.html', 'Content-Type' => 'text/plain'}, ''] 
-    else
-      @app.call(env)
-    end
-  end
-end) 
+set :public, Proc.new { File.join(root, "site", "_site") }
 
-run Rack::File.new('public')
+# TODO! - IS THIS SANE ???? 
+#
+# This before filter ensures that your pages are only ever served
+# once (per deploy) by Sinatra, and then by Varnish after that
+before do
+  response.headers['Cache-Control'] = 'public, max-age=31557600' # 1 year
+end
+
+get '/' do
+  File.read('site/_site/index.html')
+end
+
+run Sinatra::Application

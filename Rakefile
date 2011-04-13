@@ -19,3 +19,11 @@ end
 desc "Compile parser from grammar"
 task :compile => "lib/javascripts/language/Parser.js"
 
+
+# Website
+namespace :site do        
+   desc "Generate website"
+   task :generate do
+      sh "bundle exec jekyll site site/_site"
+   end
+end
