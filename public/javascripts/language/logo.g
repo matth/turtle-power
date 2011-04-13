@@ -45,8 +45,8 @@ tokens
 
 token
 		: WORD						  	{ $$ = new Tokens.WORD($1)    } 
-		| FLOAT	    			  	{ $$ = new Tokens.FLOAT($1)   } 
-		| INTEGER					  	{ $$ = new Tokens.INTEGER($1) } 
+		| FLOAT	    			  	{ $$ = new Tokens.NUMBER($1)   } 
+		| INTEGER					  	{ $$ = new Tokens.NUMBER($1) } 
 		| '[' expr ']'        { $$ = new Tokens.LIST($2)    }		
 		| '[' ']'        			{ $$ = new Tokens.LIST([])    }				
 		;

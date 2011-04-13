@@ -34,8 +34,7 @@ var Interpreter = (function() {
 					for (var i = 0; i < cmd.wants(); i++) args.push(this.exec(tokens));
 					return cmd.exec(args);
 					break;
-				case 'INTEGER':
-				case 'FLOAT':   
+				case 'NUMBER':   
 				case 'LIST':   				
 					return token;
 				default: 

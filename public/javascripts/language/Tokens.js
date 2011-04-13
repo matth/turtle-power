@@ -11,8 +11,7 @@ var Tokens = (function() {
 	}      
 
 	return {
-		'FLOAT'   : token('FLOAT',   function(v) {return parseFloat(v)}),
-		'INTEGER' : token('INTEGER', function(v) {return parseInt(v)}),		
+		'NUMBER'  : token('NUMBER', function(v) {return parseFloat(v)}),		
 		'WORD' 		: token('WORD'),
 		'LIST' 		: token('LIST')
 	}

@@ -16,8 +16,8 @@ describe("Tokens", function() {
 	
 	// Test atom type tokens
 	tokenTest('WORD', 'sum', 'sum')   
-	tokenTest('INTEGER', '10', 10)	
-	tokenTest('FLOAT', '10.89', 10.89)		
+	tokenTest('NUMBER', '10', 10)	
+	tokenTest('NUMBER', '10.89', 10.89)		
 	tokenTest('LIST', 'foo', 'foo')			
 	
 });

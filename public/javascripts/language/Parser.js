@@ -45,10 +45,10 @@ function anonymous(yytext, yyleng, yylineno, yy, yystate, $$) {
         this.$ = new Tokens.WORD($$[$0]);
         break;
       case 10:
-        this.$ = new Tokens.FLOAT($$[$0]);
+        this.$ = new Tokens.NUMBER($$[$0]);
         break;
       case 11:
-        this.$ = new Tokens.INTEGER($$[$0]);
+        this.$ = new Tokens.NUMBER($$[$0]);
         break;
       case 12:
         this.$ = new Tokens.LIST($$[$0 - 1]);

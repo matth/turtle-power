@@ -43,19 +43,19 @@ describe("Logo", function() {
 	});
 	
 	// Integer tokens
-	it('should parse integers into integer tokens', function() {
+	it('should parse integers into NUMBER tokens', function() {
 		tokenTest(['2', '2', '3'], 
 			function(integer, token) {
-				expect(token).toHaveType('INTEGER')			
-				expect(token).toHaveValue(parseInt(integer))				
+				expect(token).toHaveType('NUMBER')			
+				expect(token).toHaveValue(parseFloat(integer))				
 		 	});
 	});	
 	
 	// Float tokens
-	it('should parse floats into float tokens', function() {
+	it('should parse floats into NUMBER tokens', function() {
 		tokenTest(['2.3', '1.32', '3.87987'], 
 			function(f, token) {
-				expect(token).toHaveType('FLOAT')			
+				expect(token).toHaveType('NUMBER')			
 				expect(token).toHaveValue(parseFloat(f))				
 		 	});
 	});	    
