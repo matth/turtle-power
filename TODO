@@ -1,5 +1,6 @@
 == General
 
+* Sort out precendence on expr! 
 * Change tokens to types?
 
 == Interpreter
